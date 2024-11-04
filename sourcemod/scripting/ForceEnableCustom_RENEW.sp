@@ -1,6 +1,7 @@
 #include <sourcemod>
 #include <sdktools>
 #include <morecolors>
+#include <adminmenu> 
 
 public Plugin:myinfo =
 {
@@ -16,6 +17,16 @@ bool ModifiedCommands[MAXPLAYERS+1] = {false, ...};
 bool QuitExecuted[MAXPLAYERS+1] = {false, ...};
 int TimerPlayer[MAXPLAYERS+1];
 Handle ClientTimers[MAXPLAYERS+1];  // Armazena o handle do timer de cada cliente
+bool fof_skins_is_load = false;
+
+public void OnAllPluginsLoaded()
+{
+    // Verifica se o plugin de zombies está carregado
+    if (FindPluginByFile("fof_skins.smx") != null)
+    {
+        fof_skins_is_load = true;
+    }
+}
 
 // Array para armazenar os termos a serem detectados no chat
 new const String:g_TermsError[][] = 
@@ -237,6 +248,9 @@ public Action:OnSay(client, args)
     decl String:mensagem[512];
     GetCmdArgString(mensagem, sizeof(mensagem));
 
+    // if (CheckCommandAccess(client, "generic_admin", ADMFLAG_GENERIC, false))
+        // return Plugin_Continue;
+
     // Verificar cada termo da lista g_TermsError
     for (new i = 0; i < sizeof(g_TermsError); i++)
     {
@@ -265,7 +279,16 @@ public Action:Timer_EnviarMensagem(Handle:timer, any:userId)
         GetClientName(client, PlayerName, sizeof(PlayerName));
 
         // Envia a mensagem ao jogador
-        CPrintToChat(client, "%t", "chat_msg_error", PlayerName);
+        CPrintToChat(client, "{aqua}██████████████████████████████");
+        if (fof_skins_is_load)
+		{
+			CPrintToChat(client, "%t", "chat_msg_error_with_skins", PlayerName);
+        }
+		else
+		{
+			CPrintToChat(client, "%t", "chat_msg_error_without_skins", PlayerName);
+		}
+        CPrintToChat(client, "{aqua}██████████████████████████████");
     }
 
     return Plugin_Stop;
