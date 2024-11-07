@@ -300,7 +300,7 @@ public Action:Timer_EnviarMensagem(Handle:timer, any:userId)
         GetClientName(client, PlayerName, sizeof(PlayerName));
 
         // Envia a mensagem ao jogador
-        CPrintToChatAll("{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████");
+        //CPrintToChatAll("{black}██{yellow}██{black}██{yellow}██{black}██{yellow}██{black}██"); //DESATIVADO POIS EM RESOLUÇÕES MENORES NÃO FICOU LEGAL :/
         if (fof_skins_is_load)
 		{
 			CPrintToChatAll("%t", "chat_msg_error_with_skins", PlayerName);
@@ -309,7 +309,7 @@ public Action:Timer_EnviarMensagem(Handle:timer, any:userId)
 		{
 			CPrintToChatAll("%t", "chat_msg_error_without_skins", PlayerName);
 		}
-        CPrintToChatAll("{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████");
+        //CPrintToChatAll("{black}██{yellow}██{black}██{yellow}██{black}██{yellow}██{black}██");
     }
 
     return Plugin_Stop;

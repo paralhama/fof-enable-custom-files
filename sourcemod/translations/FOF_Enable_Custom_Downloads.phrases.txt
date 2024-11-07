@@ -13,20 +13,20 @@
   "chat_msg_error_without_skins"
   {
     "#format" "{1:s}"
-    "en"    "{white}If you are having issues with skins\nor models '{fullred}ERROR{white}' around the map\nGo to {green}farwest.com.br/skins {white}\nto fix this issue.\n(It’s very easy :D)"
-    "pt"    "{white}Se tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
-    "pt_p"  "{white}Se tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
-    "es"    "{white}Si tienes problemas con las skins\no modelos '{fullred}ERROR{white}' por el mapa\nVisita {green}farwest.com.br/skins {white}\npara solucionar este problema.\n(Es muy fácil :D)"
-    "fr"    "{white}Si vous avez des problèmes avec les skins\nou des modèles '{fullred}ERROR{white}' sur la carte\nAllez sur {green}farwest.com.br/skins {white}\npour corriger ce problème.\n(C'est très facile :D)"
+    "en"    "{cyan}If you are having issues with skins\nor models '{fullred}ERROR{cyan}' around the map\nGo to {green}farwest.com.br/skins {cyan}\nto fix this issue."
+    "pt"    "{cyan}Se tiver problemas com as skins\nOu modelos '{fullred}ERROR{cyan}' pelo mapa\nAcesse {green}farwest.com.br/skins {cyan}\npara corrigir esse problema."
+    "pt_p"  "{cyan}Se tiver problemas com as skins\nOu modelos '{fullred}ERROR{cyan}' pelo mapa\nAcesse {green}farwest.com.br/skins {cyan}\npara corrigir esse problema."
+    "es"    "{cyan}Si tienes problemas con las skins\no modelos '{fullred}ERROR{cyan}' por el mapa\nVisita {green}farwest.com.br/skins {cyan}\npara solucionar este problema."
+    "fr"    "{cyan}Si vous avez des problèmes avec les skins\nou des modèles '{fullred}ERROR{cyan}' sur la carte\nAllez sur {green}farwest.com.br/skins {cyan}\npour corriger ce problème."
   }
 
   "chat_msg_error_with_skins"
   {
     "#format" "{1:s}"
-    "en"    "{white}To choose a skin, type {green}!skins{white}.\nIf you are having issues with skins\nor models '{fullred}ERROR{white}' around the map\nGo to {green}farwest.com.br/skins {white}\nto fix this issue.\n(It’s very easy :D)"
-    "pt"    "{white}Para escolher uma skin, digite {green}!skins{white}.\nSe tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
-    "pt_p"  "{white}Para escolher uma skin, digite {green}!skins{white}.\nSe tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
-    "es"    "{white}Para elegir una skin, escribe {green}!skins{white}.\nSi tienes problemas con las skins\no modelos '{fullred}ERROR{white}' por el mapa\nVisita {green}farwest.com.br/skins {white}\npara solucionar este problema.\n(Es muy fácil :D)"
-    "fr"    "{white}Pour choisir une skin, tapez {green}!skins{white}.\nSi vous avez des problèmes avec les skins\nou des modèles '{fullred}ERROR{white}' sur la carte\nAllez sur {green}farwest.com.br/skins {white}\npour corriger ce problème.\n(C'est très facile :D)"
+    "en"    "{cyan}To choose a skin, type {green}!skins{cyan}.\nIf you are having issues with skins\nor models '{fullred}ERROR{cyan}' around the map\nGo to {green}farwest.com.br/skins {cyan}\nto fix this issue."
+    "pt"    "{cyan}Para escolher uma skin, digite {green}!skins{cyan}.\nSe tiver problemas com as skins\nOu modelos '{fullred}ERROR{cyan}' pelo mapa\nAcesse {green}farwest.com.br/skins {cyan}\npara corrigir esse problema."
+    "pt_p"  "{cyan}Para escolher uma skin, digite {green}!skins{cyan}.\nSe tiver problemas com as skins\nOu modelos '{fullred}ERROR{cyan}' pelo mapa\nAcesse {green}farwest.com.br/skins {cyan}\npara corrigir esse problema."
+    "es"    "{cyan}Para elegir una skin, escribe {green}!skins{cyan}.\nSi tienes problemas con las skins\no modelos '{fullred}ERROR{cyan}' por el mapa\nVisita {green}farwest.com.br/skins {cyan}\npara solucionar este problema."
+    "fr"    "{cyan}Pour choisir une skin, tapez {green}!skins{cyan}.\nSi vous avez des problèmes avec les skins\nou des modèles '{fullred}ERROR{cyan}' sur la carte\nAllez sur {green}farwest.com.br/skins {cyan}\npour corriger ce problème."
   }
 }
