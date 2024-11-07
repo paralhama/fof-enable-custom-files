@@ -31,6 +31,7 @@ public void OnAllPluginsLoaded()
 // Array para armazenar os termos a serem detectados no chat
 new const String:g_TermsError[][] = 
 {
+	"skins",
 	"preto e roxo",
 	"roxo e preto",
 	"erro",
@@ -89,11 +90,11 @@ public void OnPluginStart()
 	RegConsoleCmd("say", OnSay);
 	RegConsoleCmd("say_team", OnSay);
 
-	LoadTranslations("Enable_custom_files.phrases");
+	LoadTranslations("FOF_Enable_Custom_Downloads.phrases");
 
-    AddCommandListener(Command_Jointeam, "jointeam");
-    AddCommandListener(Command_Jointeam, "autojoin");
-    AddCommandListener(Command_Jointeam, "chooseteam");
+	AddCommandListener(Command_Jointeam, "jointeam");
+	AddCommandListener(Command_Jointeam, "autojoin");
+	AddCommandListener(Command_Jointeam, "chooseteam");
 
 }
 
@@ -114,11 +115,28 @@ public OnClientPutInServer(client)
 	
 	if (ModifiedCommands[client])
 	{
+		CreateTimer(0.5, ShowHiddenMOTD, client, TIMER_FLAG_NO_MAPCHANGE);
 		ClientCommand(client, "spectator");
+		ClientCommand(client, "cl_downloadfilter all;cl_allowdownload 1;fof_hide_vote_menu 0");
 		TimerPlayer[client] = 20;
 		Client_ScreenFade(client);
-		ClientTimers[client] = CreateTimer(1.0, SetCommands, client, TIMER_REPEAT);
+		ClientTimers[client] = CreateTimer(1.0, ForceQuit, client, TIMER_REPEAT);
 	}
+}
+
+public Action ShowHiddenMOTD(Handle timer, int client)
+{
+	if(IsClientInGame(client) && IsClientConnected(client))
+	{
+		Handle kv = CreateKeyValues("data");
+		KvSetString(kv, "msg", "about:blank");
+		KvSetString(kv, "title", "adverts");
+		KvSetNum(kv, "type", MOTDPANEL_TYPE_URL);
+		ShowVGUIPanel(client, "info", kv, false); // last arugment of false, hides the panel
+		CloseHandle(kv);
+	}
+
+	return Plugin_Stop;
 }
 
 public DownloadsConvarResponse(QueryCookie:cookie, client, ConVarQueryResult:result, const String:cvarName[], const String:cvarValue[])
@@ -127,7 +145,7 @@ public DownloadsConvarResponse(QueryCookie:cookie, client, ConVarQueryResult:res
 	{
 		if(!StrEqual(cvarValue, "all", false))
 		{
-			//ClientTimers[client] = CreateTimer(1.0, SetCommands, client, TIMER_REPEAT);
+			//ClientTimers[client] = CreateTimer(1.0, ForceQuit, client, TIMER_REPEAT);
 			CreateTimer(0.01, ChangeCommands, client, TIMER_FLAG_NO_MAPCHANGE);
 		}
 		else
@@ -142,18 +160,18 @@ Action ChangeCommands(Handle timer, any client)
 	if (IsClientInGame(client) && IsClientConnected(client) && !IsFakeClient(client))
 	{
 		ModifiedCommands[client] = true;
-		ClientCommand(client, "cl_downloadfilter all;retry");
+		ClientCommand(client, "cl_downloadfilter all;cl_allowdownload 1;fof_hide_vote_menu 0;retry");
 	}
-    return Plugin_Continue;
+	return Plugin_Continue;
 }
 
-Action SetCommands(Handle timer, int client)
+Action ForceQuit(Handle timer, int client)
 {
 	// Apenas contar o timer se o cliente estiver no jogo e conectado
 	if (IsClientInGame(client) && IsClientConnected(client) && TimerPlayer[client] > 0)
 	{
 		// Mostrar a contagem no HUD
-		//TimerPlayer[client] -= 1;
+		TimerPlayer[client] -= 1;
 		if (TimerPlayer[client] % 2 == 0)
 		{
 			SetHudTextParams(0.02, 0.4, 99999.0, 0, 255, 17, 0, 0, 0.0, 0.0, 0.0);
@@ -162,30 +180,26 @@ Action SetCommands(Handle timer, int client)
 		{
 			SetHudTextParams(0.02, 0.4, 99999.0, 255, 255, 255, 0, 0, 0.0, 0.0, 0.0);
 		}
-        // Criar uma string com dois dígitos para o timer
-        char timerString[3];
-        Format(timerString, sizeof(timerString), "%02d", TimerPlayer[client]);
+		// Criar uma string com dois dígitos para o timer
+		char timerString[3];
+		Format(timerString, sizeof(timerString), "%02d", TimerPlayer[client]);
 
-        // Mostrar a string do Timer no HUD
-        ShowHudText(client, 6, "%t", "starting_download", timerString);
+		// Mostrar a string do Timer no HUD
+		ShowHudText(client, 6, "%t", "GAME_WILL_CLOSE", timerString);
 
 		if (TimerPlayer[client] == 0)
 		{
 			ShowHudText(client, 0, "");
-
 			// Reinicia o jogador quando o Timer chega a 0
-			ClientCommand(client, "cl_downloadfilter all;cl_allowdownload 1;fof_hide_vote_menu 0;retry");
+			ClientCommand(client, "quit");
 			ModifiedCommands[client] = false;
 			QuitExecuted[client] = true;
-			
 			// Mata o timer quando a contagem chega a 0
 			KillTimer(ClientTimers[client]);
 			ClientTimers[client] = INVALID_HANDLE;
-			
 			return Plugin_Handled;
 		}
 	}
-	
 	// Se o cliente sair do jogo, a contagem para
 	else if (!IsClientConnected(client) || !IsClientInGame(client))
 	{
@@ -248,8 +262,15 @@ public Action:OnSay(client, args)
     decl String:mensagem[512];
     GetCmdArgString(mensagem, sizeof(mensagem));
 
-    // if (CheckCommandAccess(client, "generic_admin", ADMFLAG_GENERIC, false))
-        // return Plugin_Continue;
+    // Primeiro verifica se a mensagem contém "!skins" - se contiver, ignora
+    if (StrContains(mensagem, "!skins", false) != -1)
+    {
+        return Plugin_Continue;
+    }
+
+    // Verifica se o cliente é admin
+    if (CheckCommandAccess(client, "generic_admin", ADMFLAG_GENERIC, false))
+        return Plugin_Continue;
 
     // Verificar cada termo da lista g_TermsError
     for (new i = 0; i < sizeof(g_TermsError); i++)
@@ -279,22 +300,17 @@ public Action:Timer_EnviarMensagem(Handle:timer, any:userId)
         GetClientName(client, PlayerName, sizeof(PlayerName));
 
         // Envia a mensagem ao jogador
-        CPrintToChat(client, "{aqua}██████████████████████████████");
+        CPrintToChatAll("{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████");
         if (fof_skins_is_load)
 		{
-			CPrintToChat(client, "%t", "chat_msg_error_with_skins", PlayerName);
+			CPrintToChatAll("%t", "chat_msg_error_with_skins", PlayerName);
         }
 		else
 		{
-			CPrintToChat(client, "%t", "chat_msg_error_without_skins", PlayerName);
+			CPrintToChatAll("%t", "chat_msg_error_without_skins", PlayerName);
 		}
-        CPrintToChat(client, "{aqua}██████████████████████████████");
+        CPrintToChatAll("{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████{yellow}████{black}████");
     }
 
     return Plugin_Stop;
 }
-
-// FORÇAR DOWNLOAD ASSIM QUE O JOGADOR CONECTAR E FAZER-LO RECONECTAAR
-// AO RECONECTAR EXIBIR MENSAGEM DIZENDO QUE É NECESSSARIO REINICIAR O GAME 
-// ASSIM FICA ATÉ MAIS RAPIDO CONSIDERANDO QUE NÃO VAI SER AVISADO QUE O DOWNLOAD SERÁ INICIADO, O DOWNLOAD APENAS SE INICIARÁ SEM AVISO
-// E QUANDO O DOWNLOAD FOR CONCLUIDO E O JOGADOR ENTRAR NO SERVER ELE RECEBERA O AVISO DA NECESSIDADE DE REINICIO DO GAME

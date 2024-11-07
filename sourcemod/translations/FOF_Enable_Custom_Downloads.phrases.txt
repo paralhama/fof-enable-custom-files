@@ -1,0 +1,32 @@
+"Phrases"
+{
+  "GAME_WILL_CLOSE"
+  {
+    "#format" "{1:s}"
+    "en"    "WARNING: THIS SERVER HAS CUSTOM SKINS\nTHE GAME WILL CLOSE IN {1} SECONDS TO APPLY NEW SETTINGS!\nPLEASE RESTART THE GAME AND RECONNECT TO THIS SERVER AFTERWARDS!"
+    "pt"    "ATENÇÃO: ESTE SERVIDOR POSSUI SKINS PERSONALIZADAS\nO JOGO SERÁ FECHADO EM {1} SEGUNDOS PARA ATIVAR AS NOVAS CONFIGURAÇÕES!\nAPÓS ISSO, INICIE O JOGO NOVAMENTE E RECONECTE-SE NESTE SERVIDOR!"
+    "pt_p"    "ATENÇÃO: ESTE SERVIDOR POSSUI SKINS PERSONALIZADAS\nO JOGO SERÁ FECHADO EM {1} SEGUNDOS PARA ATIVAR AS NOVAS CONFIGURAÇÕES!\nAPÓS ISSO, INICIE O JOGO NOVAMENTE E RECONECTE-SE NESTE SERVIDOR!"
+    "es"    "ATENCIÓN: ESTE SERVIDOR TIENE SKINS PERSONALIZADAS\n¡EL JUEGO SE CERRARÁ EN {1} SEGUNDOS PARA APLICAR LAS NUEVAS CONFIGURACIONES!\nDESPUÉS DE ESO, REINICIE EL JUEGO Y VUELVA A CONECTARSE A ESTE SERVIDOR."
+    "fr"    "ATTENTION: CE SERVEUR POSSÈDE DES SKINS PERSONNALISÉS\nLE JEU SERA FERMÉ DANS {1} SECONDES POUR ACTIVER LES NOUVELLES CONFIGURATIONS!\nAPRÈS CELA, REDÉMARREZ LE JEU ET RECONNECTEZ-VOUS À CE SERVEUR."
+  }
+
+  "chat_msg_error_without_skins"
+  {
+    "#format" "{1:s}"
+    "en"    "{white}If you are having issues with skins\nor models '{fullred}ERROR{white}' around the map\nGo to {green}farwest.com.br/skins {white}\nto fix this issue.\n(It’s very easy :D)"
+    "pt"    "{white}Se tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
+    "pt_p"  "{white}Se tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
+    "es"    "{white}Si tienes problemas con las skins\no modelos '{fullred}ERROR{white}' por el mapa\nVisita {green}farwest.com.br/skins {white}\npara solucionar este problema.\n(Es muy fácil :D)"
+    "fr"    "{white}Si vous avez des problèmes avec les skins\nou des modèles '{fullred}ERROR{white}' sur la carte\nAllez sur {green}farwest.com.br/skins {white}\npour corriger ce problème.\n(C'est très facile :D)"
+  }
+
+  "chat_msg_error_with_skins"
+  {
+    "#format" "{1:s}"
+    "en"    "{white}To choose a skin, type {green}!skins{white}.\nIf you are having issues with skins\nor models '{fullred}ERROR{white}' around the map\nGo to {green}farwest.com.br/skins {white}\nto fix this issue.\n(It’s very easy :D)"
+    "pt"    "{white}Para escolher uma skin, digite {green}!skins{white}.\nSe tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
+    "pt_p"  "{white}Para escolher uma skin, digite {green}!skins{white}.\nSe tiver problemas com as skins\nOu modelos '{fullred}ERROR{white}' pelo mapa\nAcesse {green}farwest.com.br/skins {white}\npara corrigir esse problema.\n(é muito fácil :D)"
+    "es"    "{white}Para elegir una skin, escribe {green}!skins{white}.\nSi tienes problemas con las skins\no modelos '{fullred}ERROR{white}' por el mapa\nVisita {green}farwest.com.br/skins {white}\npara solucionar este problema.\n(Es muy fácil :D)"
+    "fr"    "{white}Pour choisir une skin, tapez {green}!skins{white}.\nSi vous avez des problèmes avec les skins\nou des modèles '{fullred}ERROR{white}' sur la carte\nAllez sur {green}farwest.com.br/skins {white}\npour corriger ce problème.\n(C'est très facile :D)"
+  }
+}
