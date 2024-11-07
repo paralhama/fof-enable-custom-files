@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <title>Far West Brasil Server Skin Fix</title>
+  <style>
+    body {
+      font-family: "Exo 2", sans-serif;
+      background-color: black;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: rgb(24, 24, 24);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      color: white;
+      border: 2px solid #4d4d4d;
+      font-size: 1.5em;
+      font-weight: 700;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #4d4d4d;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+      font-size: 1em;
+      font-weight: 700;
+    }
+    .btn:hover {
+      background-color: #ff5700;
+    }
+    .alert {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 4px;
+      color: #856404;
+    }
+    h1 {
+      color: #ff5700;
+      font-weight: 700;
+      margin-top: 0;
+      text-align: center;
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    .steps {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">FAR WEST BRASIL</h1>
+    <p id="description"></p>
+    <div class="steps">
+      <p id="step1"></p>
+	  <a href="steam://url/CommunityFilePage/2599431516" class="btn" id="button-text">CLICK HERE TO ACCESS SKIN MOD</a>
+      <p id="step2"></p>
+	  <img id="subscribe-img" src="img\subscribe-img.png" alt="Descrição da imagem" style="max-width:50%; height:auto;"/>
+      <p id="step3"></p>
+	  <img id="download-mod-img" src="img\download-mod.png" alt="Descrição da imagem" style="max-width:50%; height:auto;"/>
+      <p id="step4"></p>
+    </div>
+  </div>
+
+  <script>
+    // Detect user's language
+    const userLanguage = navigator.language || navigator.userLanguage;
+
+    // Define language-specific content
+    const translations = {
+      'pt-BR': {
+        title: 'FAR WEST BRASIL',
+        description: 'Para corrigir possíveis erros com as skins nos servidores Far West Brasil, siga os passos abaixo:',
+        step1: '1. Clique no botão abaixo para acessar o Mod Skins na Oficina Steam.',
+		buttonText: 'CLIQUE AQUI PARA ACESSAR O MOD SKINS',
+        step2: '2. Na página do Mod, clique no botão verde "Inscrever-se" para realizar o download.',
+        step3: '3. Aguarde até que o download do Mod seja concluído.',
+        step4: '4. Reinicie o jogo se ele estiver aberto e conecte-se aos servidores Far West Brasil.'
+      },
+      'pt-PT': {
+        title: 'FAR WEST BRASIL',
+        description: 'Para corrigir possíveis erros com as skins nos servidores Far West Brasil, siga os passos abaixo:',
+        step1: '1. Clique no botão abaixo para aceder ao Mod de Skins na Oficina Steam.',
+        buttonText: 'CLIQUE AQUI PARA ACEDER AO MOD DE SKINS',
+        step2: '2. Na página do Mod, clique no botão verde "Subscrever" para realizar o download.',
+        step3: '3. Aguarde até que o download do Mod esteja concluído.',
+        step4: '4. Reinicie o jogo se estiver aberto e conecte-se aos servidores Far West Brasil.'
+      },
+      'es-ES': {
+        title: 'FAR WEST BRASIL',
+        description: 'Para solucionar cualquier problema con las skins en los servidores de Far West Brasil, sigue estos pasos:',
+        step1: '1. Haz clic en el botón de abajo para acceder al Mod de Skins en el Steam Workshop.',
+        buttonText: 'HAZ CLIC AQUÍ PARA ACCEDER AL MOD DE SKINS',
+        step2: '2. En la página del Mod, haz clic en el botón verde "Suscribirse" para iniciar la descarga.',
+        step3: '3. Espera hasta que se complete la descarga del Mod.',
+        step4: '4. Reinicia el juego si está abierto y conéctate a los servidores de Far West Brasil.'
+      },
+      'fr-FR': {
+        title: 'FAR WEST BRASIL',
+        description: 'Pour résoudre les problèmes de skins sur les serveurs Far West Brasil, suivez ces étapes:',
+        step1: '1. Cliquez sur le bouton ci-dessous pour accéder au Mod Skins sur le Steam Workshop.',
+        buttonText: 'CLIQUEZ ICI POUR ACCÉDER AU MOD SKINS',
+        step2: '2. Sur la page du Mod, cliquez sur le bouton vert "S\'abonner" pour démarrer le téléchargement.',
+        step3: '3. Attendez que le téléchargement du Mod soit terminé.',
+        step4: '4. Redémarrez le jeu s\'il est ouvert et connectez-vous aux serveurs Far West Brasil.'
+      },
+      'en-US': {
+        title: 'FAR WEST BRASIL',
+        description: 'To fix any issues with skins on the Far West Brasil servers, follow these steps:',
+        step1: '1. Click the button below to access the Skin Mod on Steam Workshop.',
+		buttonText: 'CLICK HERE TO ACCESS SKIN MOD',
+        step2: '2. On the Mod page, click the green "Subscribe" button to start the download.',
+        step3: '3. Wait until the Mod download is complete.',
+        step4: '4. Restart the game if it\'s open and connect to Far West Brasil servers.'
+      }
+    };
+
+    // Get the translations for the user's language or fallback to English
+    const translation = translations[userLanguage] || translations['en-US'];
+
+    // Update the content with the appropriate translations
+    document.getElementById('title').textContent = translation.title;
+    document.getElementById('description').textContent = translation.description;
+    document.getElementById('step1').textContent = translation.step1;
+	document.getElementById('button-text').textContent = translation.buttonText;
+    document.getElementById('step2').textContent = translation.step2;
+    document.getElementById('step3').textContent = translation.step3;
+    document.getElementById('step4').textContent = translation.step4;
+  </script>
+</body>
+</html>
