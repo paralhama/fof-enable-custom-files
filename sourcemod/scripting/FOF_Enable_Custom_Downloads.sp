@@ -9,7 +9,7 @@ public Plugin:myinfo =
 	author = "Paralhama",
 	description = "Enable custom files and detects error terms in chat, sending correction tips to players.",
 	version = "1.0",
-	url = ""
+	url = "https://github.com/paralhama/fof-enable-custom-files"
 }
 
 bool Checked[MAXPLAYERS+1] = {false, ...};
@@ -262,15 +262,17 @@ public Action:OnSay(client, args)
     decl String:mensagem[512];
     GetCmdArgString(mensagem, sizeof(mensagem));
 
-    // Primeiro verifica se a mensagem contém "!skins" - se contiver, ignora
-    if (StrContains(mensagem, "!skins", false) != -1)
+    // Primeiro verifica se a mensagem contém "!skins" ou "!reset_skins" - se contiver, ignora
+    if (StrContains(mensagem, "!skins", false) != -1 || StrContains(mensagem, "!reset_skins", false) != -1)
     {
         return Plugin_Continue;
     }
 
-    // Verifica se o cliente é admin
-    if (CheckCommandAccess(client, "generic_admin", ADMFLAG_GENERIC, false))
-        return Plugin_Continue;
+    // If the player is an administrator, he will not see the help message.
+    // If you don't want to see the help messages just remove the comments 
+    // from the two lines below and compile the plugin.
+    // if (CheckCommandAccess(client, "generic_admin", ADMFLAG_GENERIC, false))
+        // return Plugin_Continue;
 
     // Verificar cada termo da lista g_TermsError
     for (new i = 0; i < sizeof(g_TermsError); i++)
@@ -300,16 +302,16 @@ public Action:Timer_EnviarMensagem(Handle:timer, any:userId)
         GetClientName(client, PlayerName, sizeof(PlayerName));
 
         // Envia a mensagem ao jogador
-        //CPrintToChatAll("{black}██{yellow}██{black}██{yellow}██{black}██{yellow}██{black}██"); //DESATIVADO POIS EM RESOLUÇÕES MENORES NÃO FICOU LEGAL :/
         if (fof_skins_is_load)
 		{
+			// If it is detected that the skins plugin is loaded, display a help message that complements the skins plugin.
+			// this is for a plugin for selecting skins on my servers, but this plugin is private...
 			CPrintToChatAll("%t", "chat_msg_error_with_skins", PlayerName);
         }
 		else
 		{
 			CPrintToChatAll("%t", "chat_msg_error_without_skins", PlayerName);
 		}
-        //CPrintToChatAll("{black}██{yellow}██{black}██{yellow}██{black}██{yellow}██{black}██");
     }
 
     return Plugin_Stop;
