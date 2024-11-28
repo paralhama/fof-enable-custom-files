@@ -32,6 +32,8 @@ public void OnAllPluginsLoaded()
 new const String:g_TermsError[][] = 
 {
 	"skins",
+	"skin",
+	"missing",
 	"preto e roxo",
 	"roxo e preto",
 	"erro",
