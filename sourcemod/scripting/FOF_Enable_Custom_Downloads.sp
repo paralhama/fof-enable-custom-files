@@ -102,6 +102,8 @@ public Action Command_Jointeam(int client, const char[] command, int args)
 {
 	if (ModifiedCommands[client] && !QuitExecuted[client])
 	{
+		// Força o jogador a permanecer no time atual ou em espectador
+		ClientCommand(client, "spectator");      
 		return Plugin_Handled;
 	}
 	return Plugin_Continue;
